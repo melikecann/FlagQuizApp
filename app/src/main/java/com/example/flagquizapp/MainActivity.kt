@@ -1,7 +1,9 @@
 package com.example.flagquizapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,10 +15,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) // enableEdgeToEdge()'i kaldırabiliriz
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_layout)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // Butonları tanımlayalım
+        val btnFlagQuiz = findViewById<Button>(R.id.btnFlagQuiz)
+        val btnGeneralKnowledge = findViewById<Button>(R.id.btnGeneralKnowledge)
+        val btnMapQuiz = findViewById<Button>(R.id.btnMapQuiz)
+        val btnCapitalQuiz = findViewById<Button>(R.id.btnCapitalQuiz)
+
+        // Ülke Bayrak Eşleştirme tıklandığında yeni ekrana geçiş
+        btnFlagQuiz.setOnClickListener {
+            startActivity(Intent(this, FlagQuizSelectionActivity::class.java))
+        }
+
+        // Genel Kültür quizi doğrudan başlatılacak
+        btnGeneralKnowledge.setOnClickListener {
+            startActivity(Intent(this, GeneralKnowledgeQuizActivity::class.java))
+        }
+
+        // Harita Quiz ekranına geçiş
+        btnMapQuiz.setOnClickListener {
+            startActivity(Intent(this, MapQuizSelectionActivity::class.java))
+        }
+
+        // Başkent Quiz ekranına geçiş
+        btnCapitalQuiz.setOnClickListener {
+            startActivity(Intent(this, CapitalQuizSelectionActivity::class.java))
         }
     }
 }
